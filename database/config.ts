@@ -3,8 +3,9 @@ import { connect, set } from 'mongoose'
 const URI: any = process.env.MONGODB_URI
 
 async function connectDB() {
+  set("strictQuery", false)
+
   try{
-    set("strictQuery", false)
     console.log("Connecting to mongoDB...")
     connect(URI)
     console.log("Successfully connected to MongoDB!")
