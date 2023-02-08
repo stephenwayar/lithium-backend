@@ -26,6 +26,8 @@ After you have completed the task, please send us a .zip file of the repo, but f
 
 **Why did you choose the tech you did?**
 
-`Don't worry about detailing every single package used, but try and justify some of your choices and your reason for making them. We want people who think in features, and how they impact the wider systems going forward, so we expect you to make reasoned decisions with intent!`
+`I selected Node.js as the backend technology because it is a fast and efficient JavaScript runtime built on Chrome's V8 JavaScript engine. It enables the use of JavaScript on the server-side and allows for the creation of fast and scalable network applications.
 
-``
+I used Express.js as the web framework for Node.js because it provides a minimal and flexible framework for building web applications. It offers a robust set of features for web and mobile applications, making it a popular choice for backend development.
+
+Finally, I chose MongoDB as the database technology because it is a highly scalable and flexible NoSQL database. It allows for the storage of unstructured data, making it an ideal choice for projects with rapidly changing data structures. Additionally, its efficient indexing and querying capabilities make it a good fit for handling large amounts of data.`
