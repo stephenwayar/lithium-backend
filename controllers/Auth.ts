@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import bcrypt from "bcryptjs"
 import User from '../models/User'
+import jwt from 'jsonwebtoken'
 
 interface User {
   id: string,
@@ -8,6 +9,41 @@ interface User {
   lastName: string,
   email: string,
   password: string
+}
+
+const login_user = async (req: Request, res: Response) => {
+  const { email, password } = req.body
+  const secret: any = process.env.SECRET
+
+  const user: User | null = await User.findOne({ email })
+
+  const passwordIsCorrect: boolean = user ? await bcrypt.compare(password, user.password) : false
+
+  if(!(user && passwordIsCorrect)){
+    return res.status(401).json({
+      success: false,
+      message: "Email or password is incorrect"
+    })
+  }
+
+  const userForToken = {
+    id: user.id,
+    email: user.email
+  }
+
+  const token = jwt.sign(
+    userForToken,
+    secret,
+    { expiresIn: '1d' }
+  )
+
+  res.status(200).send({
+    token,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    id: user.id
+  })
 }
 
 const register_user = async (req: Request, res: Response, next: any) => {
@@ -46,4 +82,4 @@ const register_user = async (req: Request, res: Response, next: any) => {
   })
 }
 
-export { register_user }
+export { login_user, register_user }
